@@ -2,39 +2,39 @@ import java.util.Scanner;
 
 class Main {
     public static void main(String[] args) {
-        //Принцип замены Барбары Лисков - наследуй только тогда, когда можешь играть роль за предка
+        //РџСЂРёРЅС†РёРї Р·Р°РјРµРЅС‹ Р‘Р°СЂР±Р°СЂС‹ Р›РёСЃРєРѕРІ - РЅР°СЃР»РµРґСѓР№ С‚РѕР»СЊРєРѕ С‚РѕРіРґР°, РєРѕРіРґР° РјРѕР¶РµС€СЊ РёРіСЂР°С‚СЊ СЂРѕР»СЊ Р·Р° РїСЂРµРґРєР°
         Product[] products = {new Milk(), new Bread(), new Mustard()};
         Scanner scanner = new Scanner(System.in);
-        //Правило DRY (Don’t Repeat Yourself): не повторяй свой код
+        //РџСЂР°РІРёР»Рѕ DRY (DonвЂ™t Repeat Yourself): РЅРµ РїРѕРІС‚РѕСЂСЏР№ СЃРІРѕР№ РєРѕРґ
         ShoppingList.listPrint(products);
         while (true) {
-            System.out.println("Введите номер товара и количество, или end завершения");
+            System.out.println("Р’РІРµРґРёС‚Рµ РЅРѕРјРµСЂ С‚РѕРІР°СЂР° Рё РєРѕР»РёС‡РµСЃС‚РІРѕ, РёР»Рё end Р·Р°РІРµСЂС€РµРЅРёСЏ");
             String str = scanner.nextLine();
             if (str.equals("end")) break;
             int productNumber = Integer.parseInt(str);
-            System.out.println("Введите количество");
+            System.out.println("Р’РІРµРґРёС‚Рµ РєРѕР»РёС‡РµСЃС‚РІРѕ");
             products[productNumber - 1].setCount(Integer.parseInt(scanner.nextLine()));
         }
         ShoppingList.shoppingListPrint(products);
     }
 
-    //Принцип единственной ответственности - каждый делает только то, для чего он предназначен
+    //РџСЂРёРЅС†РёРї РµРґРёРЅСЃС‚РІРµРЅРЅРѕР№ РѕС‚РІРµС‚СЃС‚РІРµРЅРЅРѕСЃС‚Рё - РєР°Р¶РґС‹Р№ РґРµР»Р°РµС‚ С‚РѕР»СЊРєРѕ С‚Рѕ, РґР»СЏ С‡РµРіРѕ РѕРЅ РїСЂРµРґРЅР°Р·РЅР°С‡РµРЅ
     static class ShoppingList {
         private static void listPrint(Product[] products) {
-            System.out.println("Список товаров");
+            System.out.println("РЎРїРёСЃРѕРє С‚РѕРІР°СЂРѕРІ");
             for (int i = 0; i < products.length; i++) {
                 System.out.println(i + 1 + ") " + products[i]);
             }
         }
 
         public static void shoppingListPrint(Product[] products) {
-            System.out.println("Вы купили");
+            System.out.println("Р’С‹ РєСѓРїРёР»Рё");
             int totalPrice = 0;
             for (Product item : products) {
                 totalPrice += item.getCount() * item.getPrice();
-                System.out.println(item.getName() + "  кол-во: " + item.getCount() + "; цена: " + item.getPrice() + " стоимость: " + item.getCount() * item.getPrice());
+                System.out.println(item.getName() + "  РєРѕР»-РІРѕ: " + item.getCount() + "; С†РµРЅР°: " + item.getPrice() + " СЃС‚РѕРёРјРѕСЃС‚СЊ: " + item.getCount() * item.getPrice());
             }
-            System.out.println("Итого: " + totalPrice);
+            System.out.println("РС‚РѕРіРѕ: " + totalPrice);
         }
     }
 
